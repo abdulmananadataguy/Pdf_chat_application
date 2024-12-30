@@ -41,7 +41,7 @@ def get_vector_store(text_chunks):
 
 def get_conversation_chain(vectorstore):
          # it has 3 componnets vector store - llm - memory 
-        llm = ChatOpenAI(openai_api_key=os.environ["OPENAI_API_KEY"],model="gpt-4o-mini")
+        llm = ChatOpenAI(openai_api_key="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",model="gpt-4o-mini")
         memory = ConversationBufferMemory(memory_key="chat_history",return_messages=True)
         conversation_chain=ConversationalRetrievalChain.from_llm(llm=llm,retriever=vectorstore.as_retriever(),memory=memory)
         return conversation_chain
